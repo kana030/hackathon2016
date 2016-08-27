@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <link type="text/css" rel="stylesheet"
+      href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
+    <script type="text/javascript"
+      src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript"
+      src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+    $.ajax({
+      type: 'GET',
+      url: 'http://sabae.club/siot/data.jsonp',
+      dataType: 'jsonp',
+      jsonpCallback: 'jQuery111102337722996298499_1472276608483',
+      frequency: 5, // 5秒ごとに実行
+      timeout: 10000,
+      success: function(json){
+        var len = json.length;
+        var min=0;
+        var sec=0;
+        var j =0;
+        for(var i=len-1; i>0; i--){
+          if(json[i].channel == 3){
+            $('#progress').progressbar({
+              value: 20, //TODO　あとで変更する
+              max: 100
+        })
+      }
+        }
+      }
+    });
+
+</script>
+</head>
+<body>
+<h1>Ichigoペン</h1>
+<div id="progress"></div>
+<div id="time"></div>
+  </script>
+</body>
+</html>
