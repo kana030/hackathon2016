@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Ichigoペン</title>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
     <link type="text/css" rel="stylesheet"
@@ -18,30 +19,35 @@
       url: 'http://sabae.club/siot/data.jsonp',
       dataType: 'jsonp',
       jsonpCallback: 'jQuery111102337722996298499_1472276608483',
-      frequency: 5, // 5秒ごとに実行
+      frequency: 1, // 1秒ごとに実行
       timeout: 10000,
       success: function(json){
         var len = json.length;
-        var min=0;
-        var sec=0;
         var j =0;
+        var k = 0;
         for(var i=len-1; i>0; i--){
-          if(json[i].channel == 3){
-            $('#progress').progressbar({
-              value: 20, //TODO　あとで変更する
-              max: 100
-        })
-      }
+          if(json[i].channel == 3 && j<60){
+            j++;
+            k += json[i].value;
+          $("#a").append(json[i].value + '<br>');
+
+          }
         }
+        $('#progress').progressbar({
+          value: k, //TODO　あとで変更する
+          max: j
+        })
+        k=0;
+        j = 0;
       }
     });
 
 </script>
 </head>
 <body>
-<h1>Ichigoペン</h1>
+<img src="title.png" alt="Ichigoペン" width="100%">
 <div id="progress"></div>
-<div id="time"></div>
+<div id="a"></div>
   </script>
 </body>
 </html>
